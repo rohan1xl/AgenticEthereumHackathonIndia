@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 3D Blockchain Cube Styles */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.blockchain-cube-container {
+  transform-style: preserve-3d;
+  animation: rotateCube 20s infinite linear;
+}
+
+.blockchain-cube {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+}
+
+.cube-face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.cube-face.front {
+  transform: rotateY(0deg) translateZ(100px);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.1));
+}
+
+.cube-face.back {
+  transform: rotateY(180deg) translateZ(100px);
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(59, 130, 246, 0.1));
+}
+
+.cube-face.right {
+  transform: rotateY(90deg) translateZ(100px);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.1));
+}
+
+.cube-face.left {
+  transform: rotateY(-90deg) translateZ(100px);
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(139, 92, 246, 0.1));
+}
+
+.cube-face.top {
+  transform: rotateX(90deg) translateZ(100px);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.2));
+}
+
+.cube-face.bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(236, 72, 153, 0.1));
+}
+
+.block-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+  padding: 20px;
+  height: 100%;
+}
+
+.block-cell {
+  background: linear-gradient(45deg, rgba(139, 92, 246, 0.6), rgba(236, 72, 153, 0.4));
+  border-radius: 4px;
+  animation: blockPulse 2s infinite ease-in-out;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+}
+
+.floating-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(45deg, #8b5cf6, #ec4899);
+  border-radius: 50%;
+  animation: float 4s infinite ease-in-out;
+  box-shadow: 0 0 6px rgba(139, 92, 246, 0.6);
+}
+
+.connection-line {
+  animation: lineGlow 3s infinite ease-in-out;
+}
+
+/* Animations */
+@keyframes rotateCube {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  33% {
+    transform: rotateX(360deg) rotateY(120deg) rotateZ(0deg);
+  }
+  66% {
+    transform: rotateX(360deg) rotateY(240deg) rotateZ(180deg);
+  }
+  100% {
+    transform: rotateX(720deg) rotateY(360deg) rotateZ(360deg);
+  }
+}
+
+@keyframes blockPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) scale(0.8);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes lineGlow {
+  0%, 100% {
+    opacity: 0.2;
+    stroke-width: 1;
+  }
+  50% {
+    opacity: 0.8;
+    stroke-width: 2;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .blockchain-cube {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .cube-face {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .cube-face.front,
+  .cube-face.back {
+    transform: rotateY(0deg) translateZ(75px);
+  }
+  
+  .cube-face.back {
+    transform: rotateY(180deg) translateZ(75px);
+  }
+  
+  .cube-face.right {
+    transform: rotateY(90deg) translateZ(75px);
+  }
+  
+  .cube-face.left {
+    transform: rotateY(-90deg) translateZ(75px);
+  }
+  
+  .cube-face.top {
+    transform: rotateX(90deg) translateZ(75px);
+  }
+  
+  .cube-face.bottom {
+    transform: rotateX(-90deg) translateZ(75px);
+  }
+}
